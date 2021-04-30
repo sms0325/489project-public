@@ -8,13 +8,13 @@ import operator
 
 YEAR = 2021
 
-def save_coauthor_id(author_id):
-    filename = input(author_id)
-    with open("id.txt", "w") as f:
-        f.write(input())
+def save_author_id(author_id):
+    saveFile = open("id.txt", 'w')
+    saveFile.write(author_id)
+    saveFile.close()
 
-def get_coauthor_id():
-    with open('id.txt') as f:
+def get_author_id():
+    with open("id.txt") as f:
         coauthor_id = f.readlines()
     return coauthor_id
 
