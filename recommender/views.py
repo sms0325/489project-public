@@ -11,7 +11,7 @@ from matplotlib.figure import Figure
 import networkx as nx
 import pandas as pd
 
-from recommender.build_graphs import get_coauthors_graph, get_topics_for_coauthor
+from recommender.build_graphs import get_coauthors_graph, get_topics_for_coauthor, get_coauthor_id, save_coauthor_id
 
 def index(request):
     form = ""
