@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -13,6 +14,7 @@
     <title>Re(c)search</title>
 </head>
 <body>
+    <!--  style="background-image: url(../../static/background.jpg)" -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Re(c)search</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,7 +31,8 @@
 <style>
     /* BACKGROUND */
     body {
-        background: url('/static/background.jpg');
+        /* background: url("{% static 'background.jpg' %}");  */
+            /* changed from background-image*/
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: 100% 100%;
@@ -52,7 +55,8 @@
 <div class="container p-4 home-card" style="margin-top: 5%">
     <div class="row">
         <div class="col-sm">
-            <form method="POST" action="/result">
+            <form method="POST" action="/results">
+                {% csrf_token %}
                 <div class="form-group">
                     <label class="form-title" for="exampleInputEmail1">Author ID</label>
                     <input type="state" class="form-control" id="state" name="state" aria-describedby="stateHelp">
@@ -67,7 +71,7 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
             <br>
-            <span>This form allows you to find similar authors with optional topic variables.</span>
+            <span>This form allows you to find similar authors with a topic of your interest.</span>
         </div>
     </div>
 </div>
