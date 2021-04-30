@@ -20,7 +20,7 @@ def index(request):
             form = EnterProfInfo(request.POST)
             author_id = request.POST.get("state")
             topic = request.POST.get("county")
-            # coauthor_topics = get_id(author_id)
+            save_coauthor_id(author_id)
     else:
         form = EnterProfInfo()
     return render(request, 'index.html', {'form': form})
@@ -33,7 +33,8 @@ def results(request):
     # y = np.sin(np.exp(2*x))
     # ax.plot(x, y)
 
-    graph, coauthor_ids = get_coauthors_graph(9725200)
+    coauthor_id = get_coauthor_id()
+    graph, coauthor_ids = get_coauthors_graph(coauthor_id)
         #Bora's semantic scholar ID: 1734808354
         #Ziwei's semantic scholar ID: 9725200
     query_counter = 0

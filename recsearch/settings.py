@@ -121,8 +121,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 #SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
-STATIC_URL = "/Users/spiraljr/downloads/eclipse-workspace/489project-public/static"
-STATICFILES_DIRS = "/Users/spiraljr/downloads/eclipse-workspace/489project-public/static"
+#STATIC_URL = "/Users/spiraljr/downloads/eclipse-workspace/489project-public/static/"
+STATIC_URL = "/static/"
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')
 
 # Default primary key field type
