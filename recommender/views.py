@@ -8,8 +8,12 @@ from django.http import HttpResponse
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 
+import matplotlib.pyplot as plt
+
 import networkx as nx
 import pandas as pd
+
+import io
 
 from recommender.build_graphs import get_coauthors_graph, get_topics_for_coauthor, get_author_id, save_author_id
 
@@ -30,8 +34,8 @@ def index(request):
 def results(request):
     #building graph
     fig = Figure()
-    canvas = FigureCanvas(fig)
     ax = fig.add_subplot(111)
+    canvas = FigureCanvas(fig)
     # x = np.arange(-2,1.5,.01)
     # y = np.sin(np.exp(2*x))
     # ax.plot(x, y)
@@ -59,9 +63,14 @@ def results(request):
         #if needed in requirements.txt:
         #decorator=4.4.2
     print(topics)
+    buf = io.BytesIO()
+    canvas.print_png(buf)
+    #plt.savefig(buf, format='jpg')
+    #plt.close(fig)
 
-    response = HttpResponse(content_type='image/jpg') #changed to jpeg bc django doesn't like pngs. grr.
-    canvas.print_jpg(response)
+    response = HttpResponse(buf.getvalue(), content_type='image/png')
+    fig.clear()
+    response['Content-Length'] = str(len(response.content))
     return response
 
 # Create your views here.
